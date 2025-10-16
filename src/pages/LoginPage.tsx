@@ -6,7 +6,9 @@ import logo from '../assets/login-logo.png'
 const LoginPage: React.FC = () => {
     const { login, loading } = useAuth()
     const navigate = useNavigate()
-    const [email, setEmail] = useState('admin@codex.local')
+
+    // pré-preenchido conforme solicitado
+    const [email, setEmail] = useState('teste@teste.com.br')
     const [password, setPassword] = useState('admin')
     const [error, setError] = useState('')
 
