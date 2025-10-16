@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+
+    // ✅ o case precisa ser "Bundler"
+    "moduleResolution": "Bundler",
+
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    "jsx": "react-jsx",
+    "strict": true,
+
+    // ✅ faz o TS conhecer import.meta.env (Vite)
+    "types": ["vite/client"],
+
+
+  },
+  "include": ["src"]
+}
