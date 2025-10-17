@@ -8,8 +8,8 @@ const LoginPage: React.FC = () => {
     const navigate = useNavigate()
 
     // pré-preenchido conforme solicitado
-    const [email, setEmail] = useState('teste@teste.com.br')
-    const [password, setPassword] = useState('admin')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
     const onSubmit = async (e: React.FormEvent) => {
