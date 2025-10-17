@@ -1,9 +1,10 @@
 // src/services/api.ts
 import axios from 'axios'
 
-const MODE = import.meta?.env?.MODE
-const isHml = MODE === 'hml'
-const isProd = MODE === 'prod'
+// O Vite sempre seta MODE como 'production' no build
+// Então vamos usar a presença da variável VITE_API_BASE para determinar o ambiente
+const VITE_API_BASE = import.meta.env.VITE_API_BASE
+const MODE = import.meta.env.MODE
 
 const DEFAULTS = {
     dev: 'http://localhost:8080',
@@ -11,9 +12,12 @@ const DEFAULTS = {
     prod: 'http://177.53.148.179:8080'
 }
 
-const baseURL =
-    import.meta?.env?.VITE_API_BASE
-    || (isHml ? DEFAULTS.hml : isProd ? DEFAULTS.prod : DEFAULTS.dev)
+// Usa VITE_API_BASE se definido, senão usa localhost (dev)
+const baseURL = VITE_API_BASE || DEFAULTS.dev
+
+// Determina ambiente pela URL para logs
+const isDev = baseURL.includes('localhost')
+const ambiente = isDev ? '🟢 DEV' : baseURL.includes('177.53.148.179') ? '🟡 HML/PROD' : '🔴 PROD'
 
 // API para requisições públicas (login, etc)
 export const publicApi = axios.create({
@@ -61,7 +65,7 @@ api.interceptors.response.use(
 )
 
 if (typeof window !== 'undefined') {
-    console.info('[API] baseURL =', baseURL, '| mode =', MODE)
+    console.info(`[API] ${ambiente} | baseURL =`, baseURL, '| mode =', MODE, '| VITE_API_BASE =', VITE_API_BASE)
 }
 
 export default api

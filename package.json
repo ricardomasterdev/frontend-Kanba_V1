@@ -13,8 +13,8 @@
     "build:prod": "tsc -b && vite build --mode prod",
 
     "preview": "vite preview",
-    "preview:hml": "vite preview",
-    "preview:prod": "vite preview"
+    "preview:hml": "vite preview --mode hml",
+    "preview:prod": "vite preview --mode prod"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
